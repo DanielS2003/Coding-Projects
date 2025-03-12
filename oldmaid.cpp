@@ -38,6 +38,30 @@ int main (){
         humdeck.push_back(rand() % 13);
     }
 
+    std::vector<int> total = comdeck; // Copy comdeck to total
+    total.insert(total.end(), humdeck.begin(), humdeck.end());
+    
+// Run the while loop to match and remove elements
+    while (total.size() > 0) {
+        matcher(total);
+
+        if (total.size() == 0) {
+            std::cout << "Decks have been generated, picking queen...\n";
+            break; // Exit the loop if all cards are matched
+        }
+
+        comdeck.clear(); // Clear the computer's deck
+        humdeck.clear(); // Clear your deck
+
+        for (int i = 0; i < 10; i++) {
+            comdeck.push_back(rand() % 13); // Generates numbers between 0 and 12
+            humdeck.push_back(rand() % 13);
+        }
+        total.clear();
+        total = comdeck;
+        total.insert(total.end(), humdeck.begin(), humdeck.end());
+}
+
     int queenpick = rand() % 2; // Determines who gets the queen (value 13)
 
     if (queenpick == 0) {
